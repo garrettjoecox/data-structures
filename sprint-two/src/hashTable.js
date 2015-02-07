@@ -48,14 +48,16 @@ HashTable.prototype.remove = function(k){
 };
 
 // .resize
-  // to bigger:
-  // make sure hash table doubles in size as soon
-  // as 75 % of the spaces have been filled
-  //
-  // to smaller:
-  // make sure hash table shrinks when space
-  // usage falls below 25%
-
+  // rough PLAN:
+  // empty out buckets
+  //   empty out elements in bucket
+  // rehash using the limit (bigger or
+  //     smaller, as passed in to this function)
+  //   take into account in rehashing that we don't
+  //       retrigger upsizing and downsizing as we
+  //       take out things from original array to
+  //       less than 25% occupancy and as we put things
+  //       into new array at less than 25% occupancy
 
 /*
  * Complexity: What is the time complexity of the above functions?
