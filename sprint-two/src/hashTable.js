@@ -13,6 +13,9 @@ HashTable.prototype.insert = function(k, v){
 
   temp.push([k, v]);
   this._storage.set(i, temp);
+
+  // resize to bigger if > 75%
+
 };
 
 HashTable.prototype.retrieve = function(k){
@@ -40,8 +43,18 @@ HashTable.prototype.remove = function(k){
   });
   temp[indexFound][1] = null;
   this._storage.set(i, temp);
+
+  // resize to smaller if < 25%
 };
 
+// .resize
+  // to bigger:
+  // make sure hash table doubles in size as soon
+  // as 75 % of the spaces have been filled
+  //
+  // to smaller:
+  // make sure hash table shrinks when space
+  // usage falls below 25%
 
 
 /*
