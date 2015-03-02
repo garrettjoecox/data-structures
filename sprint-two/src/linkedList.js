@@ -1,68 +1,42 @@
 var LinkedList = function(){
-  var list = {};
+    var list = {};
+    list.head = null;
+    list.tail = null;
 
-  list.head = null;
-  list.tail = null;
+    list.addToTail = function(value){
+        var newNode = Node(value);
+        var oldNode = list.tail;
+        if (!list.tail) {
+            list.head = newNode;
+            list.tail = newNode;
+        } else {
+            oldNode.next = newNode;
+            list.tail = newNode;
+        };
+    };
 
-  list.addToTail = function(value){
-    var newNode = Node(value);
-    var oldNode = list.tail;
+    list.removeHead = function(){
+        var oldHeadValue = list.head.value;
+        var newHead = list.head.next;
+        list.head = newHead;
+        return oldHeadValue;
+    };
 
-    if (!list.tail) {
-      list.head = newNode;
-      list.tail = newNode;
-    } else {
-      // if (newNode !== list.head) {
-        newNode.previous = oldNode;
-        oldNode.next = newNode;
-        list.tail = newNode;
-      // }
-    }
-  };
-  list.removeHead = function(){
-    var oldHeadValue = list.head.value;
-    var newHead = list.head.next;
-
-    list.head = newHead;
-    return oldHeadValue;
-  };
-
-  list.contains = function(target){
-    var currentNode = list.head;
-    var contains = false;
-
-    if (list.tail.value === target) return true;
-    while (currentNode.next) {
-      if (currentNode.value === target) {
-        contains = true;
-      }
-      currentNode = currentNode.next;
-    }
-    return contains;
-  };
-
-  list.addToHead = function(value){
-
-  };
-
-  list.removeTail = function(){
-    // return removed tail
-  }
-
-
-  return list;
+    list.contains = function(target){
+        var doesContain = (list.head.value === target);
+        var currentNode = list.head.next;
+        while (currentNode) {
+            if (currentNode.value === target) doesContain = true;
+            currentNode = currentNode.next;
+        };
+        return doesContain;
+    };
+    return list;
 };
 
 var Node = function(value){
-  var node = {};
-
-  node.value = value;
-  node.next = null;
-  node.previous = null;
-
-  return node;
+    var node = {};
+    node.value = value;
+    node.next = null;
+    return node;
 };
-
-/*
- * Complexity: What is the time complexity of the above functions?
- */
